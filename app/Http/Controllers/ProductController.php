@@ -58,7 +58,11 @@ class ProductController extends Controller
         ]);
 
         //redirect to index
-        return to_route('products.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        // return to_route('products.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return response()->json([
+            'status' => "success",
+            'message' => "berhasil disimpan"
+        ]);
     }
 
     /**
@@ -77,7 +81,13 @@ class ProductController extends Controller
     {
 
         //render view with product
-        return view('products.edit', compact('product'));
+        // return view('products.edit', compact('product'));
+
+        return response()->json([
+            'status' => "success",
+            'message' => "Data berhasil diambil",
+            'data' => $product
+        ]);
     }
 
     /**
@@ -125,7 +135,11 @@ class ProductController extends Controller
         }
 
         //redirect to index
-        return to_route('products.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        // return to_route('products.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return response()->json([
+            'status' => "success",
+            'message' => "berhasil disimpan"
+        ]);
     }
 
     /**
@@ -141,6 +155,10 @@ class ProductController extends Controller
         $product->delete();
 
         //redirect to index
-        return to_route('products.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        // return to_route('products.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return response()->json([
+            'status' => "success",
+            'message' => "berhasil Dihapus"
+        ]);
     }
 }
