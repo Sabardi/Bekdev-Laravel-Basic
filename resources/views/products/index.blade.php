@@ -1,4 +1,4 @@
-@extends('layouts.home')
+@extends('layouts.admin')
 @push('after-style')
     {{-- style css --}}
 @endpush
@@ -6,11 +6,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <div>
-                    <h3 class="text-center my-4">Tutorial Laravel 11 untuk Pemula</h3>
-                    <h5 class="text-center"><a href="https://santrikoding.com">www.santrikoding.com</a></h5>
-                    <hr>
-                </div>
+
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
                         <a href="javascript:void(0)" class="btn btn-md btn-success mb-3 add_data">ADD PRODUCT</a>
@@ -152,20 +148,20 @@
             $('input[name="price"]').val('');
             $('input[name="stock"]').val('');
             $('#staticBackdropLabel').html("Tambah Product")
-            $('#form_product').attr('action', '/products');
+            $('#form_product').attr('action', '/dashboard/products');
         }
 
         $(document).on('click', '.edit_data', function() {
 
             var id = $(this).data('id');
             $('#product_id').val(id);
-            var url = "/products/" + id + "/edit";
+            var url = "/dashboard/products/" + id + "/edit";
             fetch(url)
                 .then(response => response.json())
                 .then(response => {
                     $('#staticBackdrop').modal('show');
                     $('#staticBackdropLabel').html("Edit Product")
-                    $('#form_product').attr('action', '/products/' + id);
+                    $('#form_product').attr('action', '/dashboard/products/' + id);
                     $('input[name="title"]').val(response.data.title);
                     $('textarea[name="description"]').val(response.data.description);
                     $('input[name="price"]').val(response.data.price);
@@ -188,12 +184,10 @@
                 confirmButtonText: 'YA, HAPUS!'
             }).then((result) => {
                 if (result.isConfirmed) {
-
-
                     //fetch to delete data
                     $.ajax({
 
-                        url: `/products/${id}`,
+                        url: `/dashboard/products/${id}`,
                         type: "DELETE",
                         cache: false,
                         data: {

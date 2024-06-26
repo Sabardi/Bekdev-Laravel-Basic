@@ -161,4 +161,13 @@ class ProductController extends Controller
             'message' => "berhasil Dihapus"
         ]);
     }
+
+    public function detail($id = null)
+    {
+        $product = Product::find($id);
+        return response()->json([
+            'data' => $product ? $product : null,
+            'message' => $product ? "Berhasil diambil" : "tidak ada data"
+        ]);
+    }
 }
